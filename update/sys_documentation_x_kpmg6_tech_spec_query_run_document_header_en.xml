@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="document_header" label="Document header" language="en" table="x_kpmg6_tech_spec_query_run">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>document_header</element>
+            <help/>
+            <hint/>
+            <label>Document header</label>
+            <language>en</language>
+            <name>x_kpmg6_tech_spec_query_run</name>
+            <plural>Document headers</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-24 05:01:14</sys_created_on>
+            <sys_id>18d599aadbe9b70081438a8b3a961964</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Document header</sys_name>
+            <sys_package display_value="Tech Spec Creator" source="x_kpmg6_tech_spec">6d143da1dbedf30081438a8b3a961939</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Tech Spec Creator">6d143da1dbedf30081438a8b3a961939</sys_scope>
+            <sys_update_name>sys_documentation_x_kpmg6_tech_spec_query_run_document_header_en</sys_update_name>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-24 05:01:14</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

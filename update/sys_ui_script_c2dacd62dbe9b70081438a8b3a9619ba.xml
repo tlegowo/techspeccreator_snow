@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description>Main utility to create Word document for TSC app&#13;
+&#13;
+TODO: Review formatting and ensure it's inline with the rest of the TSC App</description>
+        <global>false</global>
+        <name>x_kpmg6_tech_spec.CreateDocumentUtil</name>
+        <script><![CDATA[/*
+Ui Script adds properties to document and initiate object for processing of target document
+ */
+/*jshint esnext: true */
+function CreateDocumentUtil(g_form )
+{
+	ScriptLoader.getScripts('x_kpmg6_tech_spec.ieFixJS.jsdbx?'+new Date().valueOf(), function() {
+	ScriptLoader.getScripts('x_kpmg6_tech_spec.FileUtility.js.jsdbx?'+new Date().valueOf(), function() {
+		ScriptLoader.getScripts('x_kpmg6_tech_spec.DocCreator.js.jsdbx?'+new Date().valueOf(), function() {
+			ScriptLoader.getScripts('x_kpmg6_tech_spec.docAlerts.jsdbx?'+new Date().valueOf(), function() {
+				sleep(100);
+				swal({
+					title: 'Enter file name for the document',
+					input: 'text',
+					type:'info',
+					width:600,height:100,
+					html: "<font color='red'>***</font> Note: Default file name is the name of the Query Run record",
+					inputValue:''+g_form.getValue('name'),
+					showCancelButton: true,
+					confirmButtonText: 'Download',
+					showLoaderOnConfirm: true,
+					confirmButtonClass: 'btn btn-success',
+					cancelButtonClass: 'btn btn-danger',
+					confirmButtonColor: '#3085d6',
+					cancelButtonColor: '#d33',
+					preConfirm: function(text)  {
+						return new Promise(function(resolve)  {
+							setTimeout(function()  {
+								if (text=== '') {
+									swal.showValidationError(
+									'File name can not be empty.'
+									);
+								}
+								
+								resolve();
+							}, 2000);
+							
+						});
+						
+					},
+					//allowOutsideClick: function()  !swal.isLoading()
+				}).then(function(result)  {
+					if (result.value) {
+						swal({
+							type: 'success',
+							title: 'Document has been generated successfully!',
+							//html: 'Download of <font color="red"><b>' +  result.value + '.doc</b></font>' + ' will start in 0 seconds...' , width:600,height:100,
+							html: 'Use the document <font color="red"><b>' +  result.value + '.doc</b></font> wisely, remember, with great power comes great responsibility', width:600, height:100
+						}).then(function(result)  {
+							
+							sleepForSave(1000,g_form);
+						});
+						//g_form.setValue('name',result.value);
+						
+						var headerHTML = g_form.getValue('document_header');
+						
+						// get the main body
+						var getTinyFrame = document.getElementById("x_kpmg6_tech_spec_query_run.main_body_ifr");
+						var getTinyFrameObject = getTinyFrame.contentDocument || getTinyFrame.contentWindow.document;
+						var getTinyFrameObjectContent = getTinyFrameObject.getElementById("tinymce");
+						
+						// combine the intro and main bodies together
+						var getHTML = getTinyFrameObjectContent.innerHTML;
+						/* Add document Properties to object */
+						
+						var doc_orientation = g_form.getValue('document_orientation');
+var pageSize = doc_orientation == 'portrait'?  'size: 21cm 29.7cm' : 'size: 29.7cm 21cm' ;
+
+if (g_form.getValue('document_exported') == 'false')
+{
+    // get the main body together:
+	getHTML = getTinyFrameObjectContent.innerHTML;
+	// then add in header and footer
+    getHTML = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"> <head><link rel=File-List href="mydocument_files/filelist.xml"> <style><!-- @page {' + pageSize +'; /* A4 */ margin:1cm 1cm 1cm 1cm; /* Margins: 2.5 cm on each side */ mso-page-orientation: '+ doc_orientation +'; mso-header:  h1; mso-footer:  f1; } @page Section1 { } div.Section1 { page:Section1; } p.MsoFooter, li.MsoFooter, div.MsoFooter { } table#hrdftrtbl { margin:0in 0in 0in 19in;  width:1px; height:1px; overflow:hidden;border:none} --></style> </head> <body> <div class=Section1>' + getHTML + '</div> </body> </html>';
+}
+						
+						//getHTML = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"> <head><link rel=File-List href="mydocument_files/filelist.xml"> <style><!-- @page { size:29.7cm 21cm ; /* A4 */ margin:1cm 1cm 1cm 1cm; /* Margins: 2.5 cm on each side */ mso-page-orientation: landscape; mso-header:  h1; mso-footer:  f1; } @page Section1 { } div.Section1 { page:Section1; } p.MsoFooter, li.MsoFooter, div.MsoFooter { } table#hrdftrtbl { margin:0in 0in 0in 900in;  width:1px; height:1px; overflow:hidden;border:none} --></style> </head> <body> <div class=Section1>' + getHTML + '</div> </body> </html>';
+							getTinyFrameObjectContent.innerHTML = getHTML;
+						/* Initiate object for document export */
+							$j(getTinyFrameObjectContent).wordExport(result.value, headerHTML);
+							
+						}
+
+					});
+				
+				});
+			});
+		});
+		});
+	}
+	
+	
+	
+	function sleep(milliseconds) {
+		var start = new Date().getTime();
+		for (var i = 0; i < 1e7; i++) {
+			if ((new Date().getTime() - start) > milliseconds) {
+				break;
+			}
+		}
+	}
+
+	function sleepForSave(milliseconds,g_form) {
+		var start = new Date().getTime();
+		for (var i = 0; i < 1e7; i++) {
+			if ((new Date().getTime() - start) > milliseconds) {
+				break;
+			}
+		}
+		g_form.setValue('document_exported',true);
+		g_form.save();
+	}]]></script>
+        <script_name>CreateDocumentUtil</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>thomas.legowo</sys_created_by>
+        <sys_created_on>2019-05-24 04:14:22</sys_created_on>
+        <sys_id>c2dacd62dbe9b70081438a8b3a9619ba</sys_id>
+        <sys_mod_count>12</sys_mod_count>
+        <sys_name>x_kpmg6_tech_spec.CreateDocumentUtil</sys_name>
+        <sys_package display_value="Tech Spec Creator" source="x_kpmg6_tech_spec">6d143da1dbedf30081438a8b3a961939</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Tech Spec Creator">6d143da1dbedf30081438a8b3a961939</sys_scope>
+        <sys_update_name>sys_ui_script_c2dacd62dbe9b70081438a8b3a9619ba</sys_update_name>
+        <sys_updated_by>thomas.legowo</sys_updated_by>
+        <sys_updated_on>2019-05-30 01:27:02</sys_updated_on>
+        <ui_type>0</ui_type>
+        <use_scoped_format>false</use_scoped_format>
+    </sys_ui_script>
+</record_update>

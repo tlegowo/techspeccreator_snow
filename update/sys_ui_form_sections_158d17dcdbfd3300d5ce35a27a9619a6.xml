@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_form_sections form_id="158d17dcdbfd3300d5ce35a27a9619a6" sys_domain="global" table="x_kpmg6_tech_spec_document_template" version="3">
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>0</position>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-30 01:23:30</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>d98d97dcdbfd3300d5ce35a27a961928</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_kpmg6_tech_spec_document_template" name="x_kpmg6_tech_spec_document_template" sys_domain="global" view="Default view">158d17dcdbfd3300d5ce35a27a9619a6</sys_ui_form>
+            <sys_ui_section caption="NULL" display_value="" name="x_kpmg6_tech_spec_document_template" sys_domain="global" view="Default view">6798c225db21370081438a8b3a9619d3</sys_ui_section>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-30 01:23:30</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form_section action="INSERT_OR_UPDATE">
+            <position>1</position>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-30 01:23:30</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>918d97dcdbfd3300d5ce35a27a96192b</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_overrides/>
+            <sys_ui_form display_value="x_kpmg6_tech_spec_document_template" name="x_kpmg6_tech_spec_document_template" sys_domain="global" view="Default view">158d17dcdbfd3300d5ce35a27a9619a6</sys_ui_form>
+            <sys_ui_section caption="Content" display_value="Content" name="x_kpmg6_tech_spec_document_template" sys_domain="global" view="Default view">198d97dcdbfd3300d5ce35a27a961929</sys_ui_section>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-30 01:23:30</sys_updated_on>
+        </sys_ui_form_section>
+        <sys_ui_form action="INSERT_OR_UPDATE">
+            <name>x_kpmg6_tech_spec_document_template</name>
+            <roles/>
+            <sys_class_name>sys_ui_form</sys_class_name>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-30 01:23:30</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>158d17dcdbfd3300d5ce35a27a9619a6</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_kpmg6_tech_spec_document_template</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Tech Spec Creator" source="x_kpmg6_tech_spec">6d143da1dbedf30081438a8b3a961939</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Tech Spec Creator">6d143da1dbedf30081438a8b3a961939</sys_scope>
+            <sys_update_name>sys_ui_form_sections_158d17dcdbfd3300d5ce35a27a9619a6</sys_update_name>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-30 01:23:30</sys_updated_on>
+            <sys_user/>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_form>
+    </sys_ui_form_sections>
+</record_update>

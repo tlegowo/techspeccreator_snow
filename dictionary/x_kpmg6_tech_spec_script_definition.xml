@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Script definition" max_length="40" name="x_kpmg6_tech_spec_script_definition" type="collection">
+        <element dependent="table" dependent_on_field="table" label="Default query" max_length="4000" name="default_query" type="conditions" use_dependent_field="true"/>
+        <element attributes="edge_encryption_enabled=true" label="Description" max_length="1000" name="description" type="string"/>
+        <element dependent="table" dependent_on_field="table" label="Description field" max_length="100" name="description_field" type="field_name" use_dependent_field="true"/>
+        <element label="Name" max_length="100" name="name" type="string"/>
+        <element dependent="table" dependent_on_field="table" label="Name field" max_length="100" name="name_field" type="field_name" use_dependent_field="true"/>
+        <element label="Table" max_length="80" name="table" type="table_name"/>
+    </element>
+</database>

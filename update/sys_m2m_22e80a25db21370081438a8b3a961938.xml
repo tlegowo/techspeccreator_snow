@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_m2m">
+    <sys_m2m action="INSERT_OR_UPDATE">
+        <from_table>x_kpmg6_tech_spec_document_template</from_table>
+        <m2m_from_field>document_template</m2m_from_field>
+        <m2m_from_label>Script definitions</m2m_from_label>
+        <m2m_table>x_kpmg6_tech_spec_m2m_script_defin_document_tem</m2m_table>
+        <m2m_to_field>script_definition</m2m_to_field>
+        <m2m_to_label>Document templates</m2m_to_label>
+        <sys_class_name>sys_m2m</sys_class_name>
+        <sys_created_by>thomas.legowo</sys_created_by>
+        <sys_created_on>2019-05-21 06:11:26</sys_created_on>
+        <sys_id>22e80a25db21370081438a8b3a961938</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_kpmg6_tech_spec_m2m_script_defin_document_tem</sys_name>
+        <sys_package display_value="Tech Spec Creator" source="x_kpmg6_tech_spec">6d143da1dbedf30081438a8b3a961939</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Tech Spec Creator">6d143da1dbedf30081438a8b3a961939</sys_scope>
+        <sys_update_name>sys_m2m_22e80a25db21370081438a8b3a961938</sys_update_name>
+        <sys_updated_by>thomas.legowo</sys_updated_by>
+        <sys_updated_on>2019-05-21 06:11:26</sys_updated_on>
+        <to_table>x_kpmg6_tech_spec_script_definition</to_table>
+    </sys_m2m>
+</record_update>

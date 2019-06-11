@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Query run" max_length="40" name="x_kpmg6_tech_spec_query_run" type="collection">
+        <element label="Document exported" max_length="40" name="document_exported" type="boolean"/>
+        <element attributes="edge_encryption_enabled=true" label="Document header" max_length="4000" name="document_header" type="string"/>
+        <element attributes="edge_encryption_enabled=true" choice="1" label="Document orientation" max_length="40" name="document_orientation" type="string">
+            <choice>
+                <element inactive_on_update="false" label="Portrait" sequence="0" value="portrait"/>
+                <element inactive_on_update="false" label="Landscape" sequence="1" value="landscape"/>
+            </choice>
+        </element>
+        <element attributes="edge_encryption_enabled=true" label="Document version" max_length="40" name="document_version" type="string"/>
+        <element label="Footer" max_length="65536" name="footer" type="html"/>
+        <element label="Generate empty sections" max_length="40" name="generate_empty_sections" type="boolean"/>
+        <element label="Header" max_length="65536" name="header" type="html"/>
+        <element label="Instance" max_length="32" name="instance" reference="x_kpmg6_tech_spec_instance_connection" type="reference"/>
+        <element label="Main body" max_length="65536" name="main_body" type="html"/>
+        <element attributes="edge_encryption_enabled=true" label="Name" max_length="100" name="name" type="string"/>
+        <element label="Previous version" max_length="32" name="previous_version" reference="x_kpmg6_tech_spec_query_run" type="reference"/>
+        <element label="Template" max_length="32" name="template" reference="x_kpmg6_tech_spec_document_template" type="reference"/>
+        <element label="Version author" max_length="32" name="version_author" reference="sys_user" type="reference"/>
+        <index name="index">
+            <element name="template"/>
+        </index>
+        <index name="index2">
+            <element name="instance"/>
+        </index>
+        <index name="index3">
+            <element name="previous_version"/>
+        </index>
+        <index name="index4">
+            <element name="version_author"/>
+        </index>
+    </element>
+</database>

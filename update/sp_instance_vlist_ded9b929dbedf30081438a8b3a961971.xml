@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sp_instance_vlist">
+    <sp_instance_vlist action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <class_name/>
+        <color>primary</color>
+        <css/>
+        <display_field>name</display_field>
+        <field_list/>
+        <filter/>
+        <glyph>key</glyph>
+        <id/>
+        <maximum_entries>25</maximum_entries>
+        <order>2</order>
+        <order_by/>
+        <order_direction>asc</order_direction>
+        <roles/>
+        <short_description/>
+        <size>md</size>
+        <sp_column display_value="1">22c9b929dbedf30081438a8b3a96196d</sp_column>
+        <sp_page/>
+        <sp_widget display_value="Simple List">5b255672cb03020000f8d856634c9c28</sp_widget>
+        <sys_class_name>sp_instance_vlist</sys_class_name>
+        <sys_created_by>thomas.legowo</sys_created_by>
+        <sys_created_on>2019-05-21 05:04:44</sys_created_on>
+        <sys_id>ded9b929dbedf30081438a8b3a961971</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name/>
+        <sys_package display_value="Tech Spec Creator" source="x_kpmg6_tech_spec">6d143da1dbedf30081438a8b3a961939</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Tech Spec Creator">6d143da1dbedf30081438a8b3a961939</sys_scope>
+        <sys_update_name>sp_instance_vlist_ded9b929dbedf30081438a8b3a961971</sys_update_name>
+        <sys_updated_by>thomas.legowo</sys_updated_by>
+        <sys_updated_on>2019-05-21 05:11:48</sys_updated_on>
+        <table>x_kpmg6_tech_spec_instance_connection</table>
+        <title/>
+        <url/>
+        <widget_parameters><![CDATA[{
+	"always_show": {
+		"value": "true",
+		"displayValue": "true"
+	},
+	"panel_body_height": {
+		"value": "",
+		"displayValue": ""
+	},
+	"image_field": {
+		"value": "",
+		"displayValue": ""
+	},
+	"secondary_fields": {
+		"value": "instance_url",
+		"displayValue": "instance_url"
+	},
+	"rounded_images": {
+		"value": "true",
+		"displayValue": "true"
+	},
+	"list_page": {
+		"value": "f9897929dbedf30081438a8b3a961950",
+		"displayValue": "instance_connections"
+	},
+	"hide_footer": {
+		"value": "",
+		"displayValue": ""
+	},
+	"view": {
+		"value": "",
+		"displayValue": ""
+	}
+}]]></widget_parameters>
+    </sp_instance_vlist>
+    <sys_translated_text action="delete_multiple" query="documentkey=ded9b929dbedf30081438a8b3a961971"/>
+</record_update>

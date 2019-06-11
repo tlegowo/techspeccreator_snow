@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_kpmg6_tech_spec.DocumentServerUtil</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>#Server side ajax Util for Document Creater App&#13;
+&#13;
+TODO: Review formatting and ensure it's inline with the rest of the TSC App</description>
+        <name>DocumentServerUtil</name>
+        <script><![CDATA[var DocumentServerUtil = Class.create();
+DocumentServerUtil.prototype = {
+    initialize: function () {},
+
+	/*
+	processTemplate function process the dynamic variables embeded into the template i.e ${variable_name}
+	functions supports dot walking until 2nd level of dot walk i.e ${caller_id.location.city}
+	*/
+    processTemplate: function (objSubjectBody, current) {
+
+        var subject_value = objSubjectBody;
+        var getSub = subject_value.toString().split("${");
+        var getEle = [];
+        for (var i = 0; i < getSub.length; i++) {
+            if (getSub[i].indexOf('}') >= 0) {
+                var Element = getSub[i].toString().split("}")[0];
+
+                if (Element.indexOf('<') < 0 && Element.indexOf('>') < 0)
+                    getEle.push(Element);
+            }
+        }
+        getEle = getEle.toString().split(',');
+        var newElevalues = [];
+        var finalSubject = objSubjectBody;
+        for (var p = 0; p < getEle.length; p++) {
+            try {
+
+
+                if (getEle[p].toString().split('\.').length > 1) {
+                    var getDotWalked = "";
+                    if (getEle[p].toString().split('\.').length == 2) {
+                        getDotWalked = current[getEle[p].toString().split("\.")[0]][getEle[p].toString().split("\.")[1]].getDisplayValue();
+                    }
+                    if (getEle[p].toString().split('\.').length == 3) {
+                        getDotWalked = current[getEle[p].toString().split("\.")[0]][getEle[p].toString().split("\.")[1]][getEle[p].toString().split("\.")[2]].getDisplayValue();
+                    }
+                    finalSubject = finalSubject.replace("${" + getEle[p] + "}", getDotWalked);
+                } else {
+                    finalSubject = finalSubject.replace("${" + getEle[p] + "}", current[getEle[p]].getDisplayValue());
+                }
+
+
+            } catch (e) {}
+        }
+
+
+        return finalSubject;
+
+
+    },
+    /*
+	processRelatedList function process the related list as per configured related list json in configuration and mentioned template inform of #{relatedList}#{id}, It genrates the dynamic table as per data available data in different tables and fields mentioned in configured json
+	*/
+    processRelatedList: function (current, getRelatedList, TableConfig, rowConfig, columnConfig) {
+
+        var relatedListHTML = "";
+
+        var parsed = new global.JSON().decode(getRelatedList);
+
+        var getRelatedObj = new GlideRecord(parsed['class'].toString());
+        getRelatedObj.addQuery(parsed['lookup'].toString(), current.task);
+        getRelatedObj.query();
+        var keys = [];
+        var keyValues = [];
+
+        if (getRelatedObj.getRowCount() > 0) {
+            for (var keYValues in parsed) {
+                if (keYValues != "class" && keYValues != "lookup") {
+                    keys.push(keYValues.toString());
+                    keyValues.push(parsed[keYValues].toString());
+                }
+            }
+
+        }
+
+
+        relatedListHTML = "";
+        relatedListHTML += TableConfig[0];
+        relatedListHTML += rowConfig[0];
+        for (var ii in keys) {
+            relatedListHTML += columnConfig[0] + keys[ii] + columnConfig[1];
+
+        }
+        relatedListHTML += rowConfig[1];
+
+        var cnt = 0;
+        while (getRelatedObj.next()) {
+
+            var index = 2;
+            if (j % 2 == 0)
+                index = 4;
+            relatedListHTML += rowConfig[index];
+            for (var j in keyValues) {
+
+                if (j == 0)
+                    relatedListHTML += columnConfig[index] + this.CreateLinkForObject(getRelatedObj.sys_class_name, getRelatedObj.sys_id, getRelatedObj[keyValues[j]].getDisplayValue()) + columnConfig[index + 1];
+                else
+                    relatedListHTML += columnConfig[index] + getRelatedObj[keyValues[j]].getDisplayValue() + columnConfig[index + 1];
+
+            }
+            relatedListHTML += rowConfig[index + 1];
+            cnt++;
+        }
+
+        relatedListHTML += TableConfig[1];
+        relatedListHTML += "<br>";
+
+        return relatedListHTML;
+    },
+	
+	/*
+	  CreateLinkForObject function genrates the hyperlink to the related records 
+	*/
+    CreateLinkForObject: function (strTableName, strSysID, link) {
+        return "<a href=" + gs.getProperty('glide.servlet.uri') +'nav_to.do?uri=' + strTableName + '.do?sys_id=' + strSysID + ">" + link + "</a>";
+    },
+
+	/*
+	isAppAllowed function checks the user access to genrate document from task table to show/hide preview document button
+	*/
+    isAppAllowed: function (current) {
+      
+		var accessResult = this.getAccess(current.sys_class_name) ;
+        if (accessResult) {
+            if (gs.hasRole('itil'))
+                return true;
+            else
+                return false;
+        }
+        return false;
+    },
+	
+	userRoles: function()
+	{
+		var usrRoles = [];
+		var getRoles = new GlideRecord('sys_user_has_role');
+		getRoles.addQuery('user',gs.getUserID());
+		getRoles.query();
+		while(getRoles.next())
+			{
+			usrRoles.push(getRoles.role+'');
+		}
+
+		return usrRoles.toString();
+	},
+	
+	getAccess: function (tablename)
+	{
+	var accessResult = false ;
+	var getAllConfigs = new GlideRecord('x_kpmg6_document_configurations');
+	getAllConfigs.addQuery('table',tablename);	
+	getAllConfigs.addActiveQuery();
+	getAllConfigs.query();
+	while(getAllConfigs.next())
+		{
+		var current = 	getAllConfigs ;
+		var getUserRole = (new x_kpmg6_document.DocumentServerUtil()).userRoles(gs.getUserID());
+		var getUserGroup = (new x_kpmg6_document.DocumentServerUtil()).userGroups(gs.getUserID());
+		var disc = "For " + current.number + "\n" ;
+		if(gs.nil(current.users)&& gs.nil(current.roles)&& gs.nil(current.group))
+			{
+			accessResult = true ;
+		}
+		else
+		{ 
+			if(!gs.nil(current.users))
+			{
+			if(current.users.toString().indexOf(gs.getUserID())>=0)
+				{
+				accessResult = true ;
+			}
+			
+		}
+		if(!gs.nil(current.roles) && !gs.nil(getUserRole))
+			{
+			getUserRole = getUserRole.split(',');
+			for(var usrRole in getUserRole)
+				{
+				if(current.roles.toString().indexOf(getUserRole[usrRole])>=0)
+					{
+					accessResult = true ;
+				}
+			}
+		}
+		if(!gs.nil(current.group) && !gs.nil(getUserGroup))
+			{
+			getUserGroup = getUserGroup.split(',');
+			for(var usrGrp in getUserGroup)
+				{
+				if(current.group.toString().indexOf(getUserGroup[usrGrp])>=0)
+					{
+					accessResult = true ;
+				}
+			}
+		}
+	  }
+	}	
+	return accessResult ;
+	},
+
+	userGroups: function()
+	{
+		var usrGroups = [];
+		var getGroup = new GlideRecord('sys_user_grmember');
+		getGroup.addQuery('user',gs.getUserID());
+		getGroup.query();
+		while(getGroup.next())
+			{
+			usrGroups.push(getGroup.group+'');
+		}
+
+		return usrGroups.toString();
+	},
+
+    type: 'DocumentServerUtil'
+};
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>thomas.legowo</sys_created_by>
+        <sys_created_on>2019-05-24 04:12:10</sys_created_on>
+        <sys_id>8e6a8962dbe9b70081438a8b3a96198c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>DocumentServerUtil</sys_name>
+        <sys_package display_value="Tech Spec Creator" source="x_kpmg6_tech_spec">6d143da1dbedf30081438a8b3a961939</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Tech Spec Creator">6d143da1dbedf30081438a8b3a961939</sys_scope>
+        <sys_update_name>sys_script_include_8e6a8962dbe9b70081438a8b3a96198c</sys_update_name>
+        <sys_updated_by>thomas.legowo</sys_updated_by>
+        <sys_updated_on>2019-05-24 04:12:10</sys_updated_on>
+    </sys_script_include>
+</record_update>

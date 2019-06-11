@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Query result" max_length="40" name="x_kpmg6_tech_spec_query_result" type="collection">
+        <element attributes="edge_encryption_enabled=true" label="Description" max_length="4000" name="description" type="string"/>
+        <element attributes="edge_encryption_enabled=true" label="Name" max_length="100" name="name" type="string"/>
+        <element label="Query run" max_length="32" name="query_run" reference="x_kpmg6_tech_spec_query_run" type="reference"/>
+        <element label="Script definition" max_length="32" name="script_definition" reference="x_kpmg6_tech_spec_script_definition" type="reference"/>
+        <element attributes="edge_encryption_enabled=true" label="URL" max_length="1024" name="url" type="url"/>
+        <index name="index">
+            <element name="query_run"/>
+        </index>
+        <index name="index2">
+            <element name="script_definition"/>
+        </index>
+    </element>
+</database>

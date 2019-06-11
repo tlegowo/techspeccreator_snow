@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="document_orientation" table="x_kpmg6_tech_spec_query_run" version="3">
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>document_orientation</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Portrait</label>
+            <language>en</language>
+            <name>x_kpmg6_tech_spec_query_run</name>
+            <sequence>0</sequence>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-24 05:12:57</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>c488992edbe9b70081438a8b3a96198e</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-24 05:13:08</sys_updated_on>
+            <value>portrait</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>document_orientation</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Landscape</label>
+            <language>en</language>
+            <name>x_kpmg6_tech_spec_query_run</name>
+            <sequence>1</sequence>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-24 05:12:57</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>c888992edbe9b70081438a8b3a96198f</sys_id>
+            <sys_mod_count>1</sys_mod_count>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-24 05:13:12</sys_updated_on>
+            <value>landscape</value>
+        </sys_choice>
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>document_orientation</element>
+            <name>x_kpmg6_tech_spec_query_run</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-24 05:12:57</sys_created_on>
+            <sys_id>8088992edbe9b70081438a8b3a96198f</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>document_orientation</sys_name>
+            <sys_package display_value="Tech Spec Creator" source="x_kpmg6_tech_spec">6d143da1dbedf30081438a8b3a961939</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Tech Spec Creator">6d143da1dbedf30081438a8b3a961939</sys_scope>
+            <sys_update_name>sys_choice_x_kpmg6_tech_spec_query_run_document_orientation</sys_update_name>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-24 05:12:57</sys_updated_on>
+        </sys_choice_set>
+    </sys_choice>
+</record_update>

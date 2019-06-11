@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Document template" max_length="40" name="x_kpmg6_tech_spec_document_template" type="collection">
+        <element label="Description" max_length="2000" name="description" type="string"/>
+        <element label="Document version" max_length="65536" name="document_version" type="html"/>
+        <element label="Introduction" max_length="65536" name="introduction" type="html"/>
+        <element attributes="pdf_cell_type=image" label="Logo" max_length="40" name="logo" type="user_image"/>
+        <element label="Name" max_length="250" name="name" type="string"/>
+        <element label="Parent template" max_length="32" name="parent_template" reference="x_kpmg6_tech_spec_document_template" type="reference"/>
+        <index name="index">
+            <element name="parent_template"/>
+        </index>
+    </element>
+</database>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="" section_id="6798c225db21370081438a8b3a9619d3" sys_domain="global" table="x_kpmg6_tech_spec_document_template" version="3" view="">
+        <sys_ui_annotation action="INSERT_OR_UPDATE">
+            <is_plain_text>false</is_plain_text>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-30 01:26:09</sys_created_on>
+            <sys_id>c42e5fdcdbfd3300d5ce35a27a961909</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-30 01:26:09</sys_updated_on>
+            <text>&lt;b&gt;IMPORTANT:&lt;/b&gt;&lt;br/&gt;
+If you would like to split your tech spec into applications, e.g. Incident Management, Problem Management instead of joining all of the codes together as one:
+&lt;ol&gt;
+&lt;li&gt;Create one template per application&lt;/li&gt;
+&lt;li&gt;Adjust each script type's filter. &lt;b&gt;TIP:&lt;/b&gt; tag your scripts on the target instance to differentiate them between applications, e.g. Incident Management vs Problem Management. Alternatively ensure your script query runs off particular tables where possible such as for Business Rules and Client Scripts. E.g. Anything that runs on Incident and Incident Tasks should be for Incident Management.&lt;/li&gt;
+&lt;li&gt;Link all child templates to one parent template, NOTE that when generating a document from a parent template, the Document version and Introduction contents will be taken only from the parent template definition&lt;/li&gt;
+&lt;/ol&gt;</text>
+            <type display_value="Info Box Blue">753f88a80f930000b12e6903cfe01206</type>
+        </sys_ui_annotation>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>c42e5fdcdbfd3300d5ce35a27a961909</element>
+            <position>0</position>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-30 01:26:10</sys_created_on>
+            <sys_id>9c2e5fdcdbfd3300d5ce35a27a961958</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_kpmg6_tech_spec_document_template" sys_domain="global" view="Default view">6798c225db21370081438a8b3a9619d3</sys_ui_section>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-30 01:26:10</sys_updated_on>
+            <sys_user/>
+            <type>annotation</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>name</element>
+            <position>1</position>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-30 01:26:10</sys_created_on>
+            <sys_id>142e5fdcdbfd3300d5ce35a27a961959</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_kpmg6_tech_spec_document_template" sys_domain="global" view="Default view">6798c225db21370081438a8b3a9619d3</sys_ui_section>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-30 01:26:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>description</element>
+            <position>2</position>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-30 01:26:10</sys_created_on>
+            <sys_id>982e5fdcdbfd3300d5ce35a27a961959</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_kpmg6_tech_spec_document_template" sys_domain="global" view="Default view">6798c225db21370081438a8b3a9619d3</sys_ui_section>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-30 01:26:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>parent_template</element>
+            <position>3</position>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-30 01:26:10</sys_created_on>
+            <sys_id>102e5fdcdbfd3300d5ce35a27a96195a</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_kpmg6_tech_spec_document_template" sys_domain="global" view="Default view">6798c225db21370081438a8b3a9619d3</sys_ui_section>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-30 01:26:10</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption/>
+            <header>false</header>
+            <name>x_kpmg6_tech_spec_document_template</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-21 06:09:16</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>6798c225db21370081438a8b3a9619d3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>x_kpmg6_tech_spec_document_template</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Tech Spec Creator" source="x_kpmg6_tech_spec">6d143da1dbedf30081438a8b3a961939</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Tech Spec Creator">6d143da1dbedf30081438a8b3a961939</sys_scope>
+            <sys_update_name>sys_ui_section_6798c225db21370081438a8b3a9619d3</sys_update_name>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-21 06:09:16</sys_updated_on>
+            <sys_user/>
+            <title>true</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

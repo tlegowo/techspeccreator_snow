@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_kpmg6_tech_spec.TSC_API_Utils</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>This is utility script for API purposes in retrieving data for tech spec</description>
+        <name>TSC_API_Utils</name>
+        <script><![CDATA[var TSC_API_Utils = Class.create();
+TSC_API_Utils.prototype = {
+	
+	// initialise global variables here
+	API_URL_SUFFIX           : '/api/now/table/',
+    QUERY_URL                : '?sysparm_query=',
+    FILTER_TABLE             : 'x_kpmg6_tech_spec_m2m_script_defin_document_tem',
+    LINE_BREAK               : '<br/><br/>',
+    TABLE_INLINE_STYLE       : 'border="1" width="100%" cellspacing="0" cellpadding="2"',
+	TABLE_MS_STYLE           : 'class="MsoNormalTable"',
+    TD_INLINE_STYLE_WIDTH    : 'style="background: #CCCCCC;"',
+    TD_INLINE_STYLE_WIDTH_30 : 'style="width: 30%; background: #CCCCCC;"',
+	TOC_KEYWORD              : '#{toc}',
+	
+    initialize: function() {
+    },
+
+	/*
+	 * The following function identifies which queries to run and execute them one by one
+	 */
+	runAllQueries: function(_queryRunRec) {
+		var instanceConnectionRec = _queryRunRec.instance.getRefRecord();
+		var templateRec = _queryRunRec.template.getRefRecord();
+		var instanceURL = instanceConnectionRec.getValue('instance_url');
+        var mainHTMLBody = '';
+		mainHTMLBody += this._prependIntro(_queryRunRec);
+		
+		// clean up the query result table first
+		this.cleanUpQueryResult(_queryRunRec);
+		
+		// get login credentials first
+		var connectionDetailsObj = {};
+		connectionDetailsObj.instanceurl = instanceURL;
+        connectionDetailsObj.username = instanceConnectionRec.getValue('username');
+		connectionDetailsObj.password = instanceConnectionRec.password.getDecryptedValue();
+		
+		// get the template and loop through the filters
+		var filterRec = new GlideRecord(this.FILTER_TABLE);
+		filterRec.addQuery('document_template', templateRec.getValue('sys_id'));
+		filterRec.orderBy('order');
+		filterRec.query();
+		while (filterRec.next()) {
+			// for every filter record, retrieve the query results from the target system
+			var responseObj = this.runIndividualQuery(connectionDetailsObj, filterRec);
+			// now process the result from the query
+		    mainHTMLBody += this.storeResponse(JSON.parse(responseObj), _queryRunRec, filterRec, instanceURL);
+		}
+		
+		// update the Main Body HTML field on the Query run table
+		_queryRunRec.main_body = mainHTMLBody;
+		// also reset the export flag
+		_queryRunRec.document_exported = false;
+		_queryRunRec.update();
+	},
+	
+	/* 
+	 * The following function runs individual query onto the target instance
+	 */
+	runIndividualQuery: function(_connectionDetailsObj, _filterRec) {
+		// construct the endpoint
+		var endpoint = _connectionDetailsObj.instanceurl + this.API_URL_SUFFIX + _filterRec.table + this.QUERY_URL + encodeURIComponent(_filterRec.conditions);
+		var request = new sn_ws.RESTMessageV2();
+        request.setEndpoint(endpoint);
+        request.setHttpMethod('GET');
+        request.setBasicAuth(_connectionDetailsObj.username, _connectionDetailsObj.password);
+        request.setRequestHeader("Accept","application/json");
+
+        var response = request.execute();        
+		return response.getBody();
+	},
+	
+	/*
+	 * This function breaks down a response body and store the individual items
+	 * this function also dynamically build the HTML table
+	 */
+	storeResponse: function (_responseBodyObj, _queryRunRec, _filterRec, _instanceURL) {
+		// start with subsection title and short description from the Filter record's data
+		var htmlBody = '<h2>' + _filterRec.script_definition.name + '</h2>';
+		htmlBody += '<p>' + _filterRec.script_definition.description + '</p>';
+		
+		var tableHTMLBody = '<table ' + this.TABLE_MS_STYLE + ' ' + this.TABLE_INLINE_STYLE + '>';
+        tableHTMLBody += '<tr><td ' + this.TD_INLINE_STYLE_WIDTH_30 + '><b>Name</b></td><td ' + this.TD_INLINE_STYLE_WIDTH + '><b>Description</b></td></tr>';
+		
+		var resultArr = _responseBodyObj.result;
+		// loop through the result array in the _responseBody JSON object
+		for (var idx = 0; idx < resultArr.length; idx++) {
+		    // insert into resulting table
+			var queryResultRec = new GlideRecord('x_kpmg6_tech_spec_query_result');
+			queryResultRec.initialize();
+			queryResultRec.query_run = _queryRunRec.getValue('sys_id');
+			queryResultRec.script_definition = _filterRec.script_definition;
+			queryResultRec.name = resultArr[idx][_filterRec.script_definition.name_field.toString()];
+			queryResultRec.description = resultArr[idx][_filterRec.script_definition.description_field.toString()];
+			queryResultRec.url = _instanceURL + '/nav_to.do?uri=' + _filterRec.script_definition.table + '.do?sys_id=' + resultArr[idx]['sys_id'];
+			queryResultRec.insert();
+			
+			// now that the query result record has been created, add to the html table row
+			tableHTMLBody += '<tr><td>' + queryResultRec.name.toString() + '</td><td>' + queryResultRec.description.toString() + '</td></tr>';
+		}
+		
+		// close the html table
+		tableHTMLBody += '</table>';
+		
+		if (resultArr.length > 0) {
+			// if there is at least one item found in the script definition, add the html table to the html body
+			htmlBody += tableHTMLBody + this.LINE_BREAK;
+		} else {
+			// default text when there is no code configured for the selected script definition
+			if (_queryRunRec.generate_empty_sections == true) {
+			    htmlBody += '<p>No ' + _filterRec.script_definition.name.toString() + ' was configured for this release.</p>' + this.LINE_BREAK;
+			} else {
+				// blank out the htmlBody if the relevant property say don't generate a section if no config was done for the particular script type
+				htmlBody = '';
+			}
+		}
+		
+		return htmlBody;
+	},
+	
+	/*
+	 * Clean up the query result table for a query run record
+	 */
+	cleanUpQueryResult: function(_queryRunRec) {
+		var queryResultRec = new GlideRecord('x_kpmg6_tech_spec_query_result');
+		queryResultRec.addQuery('query_run', _queryRunRec.sys_id);
+		queryResultRec.deleteMultiple();
+	},
+	
+	/*
+	 * This function auto populate the main body of the query run record using the query results
+	 * They will all be formatted into tables
+	 * This function is useful to use to construct the HTML tables after query to target instance has been executed and the query result table is populated
+	 * NOTE: for optimised operation, it should be faster to build the HTML table same time the query result table is populated
+	 * NOTE: We preserve the order of placement of the script sections to be the same if we run the full function that includes REST API calls to the target environment
+	 */
+	generateHTMLFromQueryResult: function (_queryRunRec) {
+		var mainHTMLBody = '';		
+		mainHTMLBody += this._prependIntro(_queryRunRec);
+		
+		// get the template and loop through the filters
+		var filterRec = new GlideRecord(this.FILTER_TABLE);
+		filterRec.addQuery('document_template', _queryRunRec.template.sys_id);
+		filterRec.orderBy('order');
+		filterRec.query();
+		while (filterRec.next()) {		
+			mainHTMLBody += this.generateScriptTypeHTMLSection(_queryRunRec, filterRec);
+		}
+		
+		_queryRunRec.main_body = mainHTMLBody;
+		// also reset the export flag
+		_queryRunRec.document_exported = false;
+		_queryRunRec.update();
+	},
+	
+	/*
+	 * This function generates individual sections for a script definition/type
+	 * NOTE: this loops through the query result table for a specific filter/script definition
+	 */
+	generateScriptTypeHTMLSection: function (_queryRunRec, _filterRec) {
+		var htmlTable = '<h2>' + _filterRec.script_definition.name + '</h2>';
+		htmlTable += '<p>' + _filterRec.script_definition.description + '</p>';
+		
+		var tableHTMLBody = '<table ' + this.TABLE_MS_STYLE + ' ' + this.TABLE_INLINE_STYLE + '>';
+        tableHTMLBody += '<tr><td ' + this.TD_INLINE_STYLE_WIDTH_30 + '><b>Name</b></td><td ' + this.TD_INLINE_STYLE_WIDTH + '><b>Description</b></td></tr>';
+		
+		var queryResultRec = new GlideRecord('x_kpmg6_tech_spec_query_result');
+		queryResultRec.addQuery('query_run', _queryRunRec.sys_id);
+		queryResultRec.addQuery('script_definition', _filterRec.script_definition);
+		queryResultRec.query();
+		while (queryResultRec.next()) {
+			// now that the query result record has been retrieved, add to the html table row
+			tableHTMLBody += '<tr><td>' + queryResultRec.name.toString() + '</td><td>' + queryResultRec.description.toString() + '</td></tr>';
+		}
+		
+		tableHTMLBody += '</table>';
+		
+		// use getRowCount as we are doing GlideRecord call anyway and this is run ad-hoc not on regular basis
+		if (queryResultRec.getRowCount() > 0) {
+			// if there is at least one item found in the script definition, add the html table to the html body
+			htmlTable += tableHTMLBody + this.LINE_BREAK;
+		} else {
+			// default text when there is no code configured for the selected script definition
+			if (_queryRunRec.generate_empty_sections == true) {
+			    htmlTable += '<p>No ' + _filterRec.script_definition.name.toString() + ' was configured for this release.</p>' + this.LINE_BREAK;
+			} else {
+				// blank out the htmlBody if the relevant query option say don't generate a section if no config was done for the particular script type
+				htmlTable = '';
+			}
+		}
+		
+		return htmlTable;
+	},
+	
+	/*
+	 * This function prepend several sections of the document template into the document: Document Version, TOC and Introduction
+	 */
+	_prependIntro: function(_queryRunRec) {
+		var mainHTMLBody = '';
+		
+		var docVersion = _queryRunRec.template.document_version;
+		var docIntro = _queryRunRec.template.introduction;
+		if (docVersion && docVersion != '') {
+			mainHTMLBody += docVersion + this.LINE_BREAK;
+		}
+		
+		mainHTMLBody += this.TOC_KEYWORD + this.LINE_BREAK;
+		
+		if (docIntro && docIntro != '') {
+			mainHTMLBody += docIntro + this.LINE_BREAK;
+		}
+		
+		return mainHTMLBody;
+	},
+	
+    type: 'TSC_API_Utils'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>thomas.legowo</sys_created_by>
+        <sys_created_on>2019-05-21 06:55:44</sys_created_on>
+        <sys_id>abe2da2ddb21370081438a8b3a961996</sys_id>
+        <sys_mod_count>59</sys_mod_count>
+        <sys_name>TSC_API_Utils</sys_name>
+        <sys_package display_value="Tech Spec Creator" source="x_kpmg6_tech_spec">6d143da1dbedf30081438a8b3a961939</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Tech Spec Creator">6d143da1dbedf30081438a8b3a961939</sys_scope>
+        <sys_update_name>sys_script_include_abe2da2ddb21370081438a8b3a961996</sys_update_name>
+        <sys_updated_by>thomas.legowo</sys_updated_by>
+        <sys_updated_on>2019-05-31 00:26:15</sys_updated_on>
+    </sys_script_include>
+</record_update>

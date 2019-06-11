@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Instance Connection" max_length="40" name="x_kpmg6_tech_spec_instance_connection" type="collection">
+        <element label="Instance URL" max_length="250" name="instance_url" type="string"/>
+        <element label="Name" max_length="100" name="name" type="string"/>
+        <element label="Password" max_length="255" name="password" type="password2"/>
+        <element label="Username" max_length="40" name="username" type="string"/>
+    </element>
+</database>

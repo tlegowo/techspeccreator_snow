@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="script_definition" label="Script definition" language="en" table="x_kpmg6_tech_spec_m2m_script_defin_document_tem">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>script_definition</element>
+            <help/>
+            <hint/>
+            <label>Script definition</label>
+            <language>en</language>
+            <name>x_kpmg6_tech_spec_m2m_script_defin_document_tem</name>
+            <plural>Script definitions</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-21 06:11:26</sys_created_on>
+            <sys_id>d3198a25db21370081438a8b3a9619af</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Script definition</sys_name>
+            <sys_package display_value="Tech Spec Creator" source="x_kpmg6_tech_spec">6d143da1dbedf30081438a8b3a961939</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Tech Spec Creator">6d143da1dbedf30081438a8b3a961939</sys_scope>
+            <sys_update_name>sys_documentation_x_kpmg6_tech_spec_m2m_script_defin_document_tem_script_definition_en</sys_update_name>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-21 06:11:26</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_embedded_help_content">
+    <sys_embedded_help_content action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category/>
+        <content><![CDATA[<p>This is the main form where you configure the automated generation of list codes from your customer instance into a HTML formatted information body before being exported into a MS Word document.</p>
+<p> </p>
+<p>HELP Article: <a href="https://kpmgaudemo2.service-now.com/nav_to.do?uri&#61;%2Fkb_view.do%3Fsys_kb_id%3Dd032c1aadba1f700cc1135a27a9619cb" target="_blank">KPMGAUDEMO2 - KB0010230</a></p>
+<p> </p>
+<h1 class="title topictitle1"><span class="ph uicontrol">TO DO - Future enhancements:</span></h1>
+<p>1. How this can accomodate sections that have more than 2 columns of Name and Description. Candidates: Dictionary, Application Module (navigator) and ATF.</p>
+<p>2. Better formatting in MS Word</p>
+<p>3. Add Customer Logo on the MS Word</p>
+<p>4. Nice UI to bring all the forms together in one seamless process on Service Portal</p>
+<p>5. Parent - Child of the &#34;Query run&#34; table so you can do a run per application. E.g. you can have a dedicated list of codes for Incident Management then one for Problem then for Change, etc. One &#34;Query run&#34; record for each application and one to act as a parent in which the HTML and MS Word generation will tie in all the child &#34;Query run&#34; records nicely.</p>]]></content>
+        <last_sync/>
+        <modifier>normal</modifier>
+        <name>x_kpmg6_tech_spec_query_run-normal</name>
+        <page>x_kpmg6_tech_spec_query_run</page>
+        <product>1</product>
+        <qualifier/>
+        <role/>
+        <role_order>1000</role_order>
+        <snc_created>false</snc_created>
+        <sys_class_name>sys_embedded_help_content</sys_class_name>
+        <sys_created_by>thomas.legowo</sys_created_by>
+        <sys_created_on>2019-05-27 00:29:03</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>ce537b53dbe17b0081438a8b3a961926</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>x_kpmg6_tech_spec_query_run-normal</sys_name>
+        <sys_package display_value="Tech Spec Creator" source="x_kpmg6_tech_spec">6d143da1dbedf30081438a8b3a961939</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Tech Spec Creator">6d143da1dbedf30081438a8b3a961939</sys_scope>
+        <sys_update_name>sys_embedded_help_content_ce537b53dbe17b0081438a8b3a961926</sys_update_name>
+        <sys_updated_by>thomas.legowo</sys_updated_by>
+        <sys_updated_on>2019-05-31 06:05:17</sys_updated_on>
+        <version>m</version>
+    </sys_embedded_help_content>
+    <sys_translated_text action="delete_multiple" query="documentkey=ce537b53dbe17b0081438a8b3a961926"/>
+</record_update>

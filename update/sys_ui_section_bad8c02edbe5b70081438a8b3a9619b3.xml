@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_ui_section caption="Options" section_id="bad8c02edbe5b70081438a8b3a9619b3" sys_domain="global" table="x_kpmg6_tech_spec_query_run" version="3" view="">
+        <sys_ui_annotation action="INSERT_OR_UPDATE">
+            <is_plain_text>false</is_plain_text>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-31 02:46:12</sys_created_on>
+            <sys_id>2a0a74f4db71b300d5ce35a27a9619ee</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-31 02:46:12</sys_updated_on>
+            <text>&lt;p&gt;&lt;b&gt;NOTE:&lt;/b&gt; To ensure orientation changes take place, as a temporary workaround, please ensure the tech spec HTML content is updated first by hitting the "Update My Tech Spec Content NOW" UI Action&lt;/p&gt;</text>
+            <type display_value="Info Box Blue">753f88a80f930000b12e6903cfe01206</type>
+        </sys_ui_annotation>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.begin_split</element>
+            <position>0</position>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-31 02:46:12</sys_created_on>
+            <sys_id>ea0a74f4db71b300d5ce35a27a9619ee</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Options" display_value="Options" name="x_kpmg6_tech_spec_query_run" sys_domain="global" view="Default view">bad8c02edbe5b70081438a8b3a9619b3</sys_ui_section>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-31 02:46:12</sys_updated_on>
+            <sys_user/>
+            <type>.begin_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>generate_empty_sections</element>
+            <position>1</position>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-31 02:46:12</sys_created_on>
+            <sys_id>620a74f4db71b300d5ce35a27a9619ef</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Options" display_value="Options" name="x_kpmg6_tech_spec_query_run" sys_domain="global" view="Default view">bad8c02edbe5b70081438a8b3a9619b3</sys_ui_section>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-31 02:46:12</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>document_version</element>
+            <position>2</position>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-31 02:46:12</sys_created_on>
+            <sys_id>e60a74f4db71b300d5ce35a27a9619ef</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Options" display_value="Options" name="x_kpmg6_tech_spec_query_run" sys_domain="global" view="Default view">bad8c02edbe5b70081438a8b3a9619b3</sys_ui_section>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-31 02:46:12</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>previous_version</element>
+            <position>3</position>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-31 02:46:12</sys_created_on>
+            <sys_id>6e0a74f4db71b300d5ce35a27a9619ef</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Options" display_value="Options" name="x_kpmg6_tech_spec_query_run" sys_domain="global" view="Default view">bad8c02edbe5b70081438a8b3a9619b3</sys_ui_section>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-31 02:46:12</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.split</element>
+            <position>4</position>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-31 02:46:12</sys_created_on>
+            <sys_id>e20a74f4db71b300d5ce35a27a9619f0</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Options" display_value="Options" name="x_kpmg6_tech_spec_query_run" sys_domain="global" view="Default view">bad8c02edbe5b70081438a8b3a9619b3</sys_ui_section>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-31 02:46:12</sys_updated_on>
+            <sys_user/>
+            <type>.split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>2a0a74f4db71b300d5ce35a27a9619ee</element>
+            <position>5</position>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-31 02:46:12</sys_created_on>
+            <sys_id>220a74f4db71b300d5ce35a27a9619fd</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Options" display_value="Options" name="x_kpmg6_tech_spec_query_run" sys_domain="global" view="Default view">bad8c02edbe5b70081438a8b3a9619b3</sys_ui_section>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-31 02:46:12</sys_updated_on>
+            <sys_user/>
+            <type>annotation</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>document_orientation</element>
+            <position>6</position>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-31 02:46:12</sys_created_on>
+            <sys_id>a60a74f4db71b300d5ce35a27a9619fd</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Options" display_value="Options" name="x_kpmg6_tech_spec_query_run" sys_domain="global" view="Default view">bad8c02edbe5b70081438a8b3a9619b3</sys_ui_section>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-31 02:46:12</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>version_author</element>
+            <position>7</position>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-31 02:46:12</sys_created_on>
+            <sys_id>2e0a74f4db71b300d5ce35a27a9619fd</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Options" display_value="Options" name="x_kpmg6_tech_spec_query_run" sys_domain="global" view="Default view">bad8c02edbe5b70081438a8b3a9619b3</sys_ui_section>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-31 02:46:12</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>.end_split</element>
+            <position>8</position>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-31 02:46:12</sys_created_on>
+            <sys_id>a20a74f4db71b300d5ce35a27a9619fe</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Options" display_value="Options" name="x_kpmg6_tech_spec_query_run" sys_domain="global" view="Default view">bad8c02edbe5b70081438a8b3a9619b3</sys_ui_section>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-31 02:46:12</sys_updated_on>
+            <sys_user/>
+            <type>.end_split</type>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>document_header</element>
+            <position>9</position>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-31 02:46:12</sys_created_on>
+            <sys_id>2a0a74f4db71b300d5ce35a27a9619fe</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Options" display_value="Options" name="x_kpmg6_tech_spec_query_run" sys_domain="global" view="Default view">bad8c02edbe5b70081438a8b3a9619b3</sys_ui_section>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-31 02:46:12</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>document_exported</element>
+            <position>10</position>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-31 02:46:12</sys_created_on>
+            <sys_id>ae0a74f4db71b300d5ce35a27a9619fe</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Options" display_value="Options" name="x_kpmg6_tech_spec_query_run" sys_domain="global" view="Default view">bad8c02edbe5b70081438a8b3a9619b3</sys_ui_section>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-31 02:46:12</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>header</element>
+            <position>11</position>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-31 02:46:12</sys_created_on>
+            <sys_id>260a74f4db71b300d5ce35a27a9619ff</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Options" display_value="Options" name="x_kpmg6_tech_spec_query_run" sys_domain="global" view="Default view">bad8c02edbe5b70081438a8b3a9619b3</sys_ui_section>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-31 02:46:12</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>footer</element>
+            <position>12</position>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-31 02:46:12</sys_created_on>
+            <sys_id>aa0a74f4db71b300d5ce35a27a9619ff</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="Options" display_value="Options" name="x_kpmg6_tech_spec_query_run" sys_domain="global" view="Default view">bad8c02edbe5b70081438a8b3a9619b3</sys_ui_section>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-31 02:46:12</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_section action="INSERT_OR_UPDATE">
+            <caption>Options</caption>
+            <header>false</header>
+            <name>x_kpmg6_tech_spec_query_run</name>
+            <roles/>
+            <sys_class_name>sys_ui_section</sys_class_name>
+            <sys_created_by>thomas.legowo</sys_created_by>
+            <sys_created_on>2019-05-23 23:25:00</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_id>bad8c02edbe5b70081438a8b3a9619b3</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Options</sys_name>
+            <sys_overrides/>
+            <sys_package display_value="Tech Spec Creator" source="x_kpmg6_tech_spec">6d143da1dbedf30081438a8b3a961939</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Tech Spec Creator">6d143da1dbedf30081438a8b3a961939</sys_scope>
+            <sys_update_name>sys_ui_section_bad8c02edbe5b70081438a8b3a9619b3</sys_update_name>
+            <sys_updated_by>thomas.legowo</sys_updated_by>
+            <sys_updated_on>2019-05-23 23:25:00</sys_updated_on>
+            <sys_user/>
+            <title>false</title>
+            <view display_value="Default view" name="NULL">Default view</view>
+            <view_name/>
+        </sys_ui_section>
+    </sys_ui_section>
+</record_update>

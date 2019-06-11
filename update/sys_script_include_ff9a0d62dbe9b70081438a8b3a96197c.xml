@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_kpmg6_tech_spec.DocumentUtil</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>#Client side ajax Util for Document Creater App&#13;
+&#13;
+TODO: Review formatting and ensure it's inline with the rest of the TSC App</description>
+        <name>DocumentUtil</name>
+        <script><![CDATA[var DocumentUtil = Class.create();
+DocumentUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+
+	/*
+	  createDocumentInstance function creates new instance for requested template and return URL of instance to load in GlideOverlay
+	*/
+    createDocumentInstance: function () {
+
+        var getTaskId = this.getParameter('sysparm_task_id');
+        var getConfigName = this.getParameter('sysparm_task_class');
+
+        var getConfig = this.getConfiguration(getConfigName);
+        var view = 'editor';
+        if (getConfig == 'NotAuthorized')
+            return '#';
+        if (getConfig == '')
+            view = 'template';
+
+        var createInstance = new GlideRecord('x_kpmg6_document_instance');
+        createInstance.initialize();
+        createInstance.task = getTaskId;
+        if (!gs.nil(getConfig) && getConfig != 'NotAuthorized')
+            createInstance.document_config = getConfig;
+
+        return createInstance.insert() + '@x_kpmg6_document_instance@' + view;
+
+
+    },
+
+	/*
+	  getImageRefrence function returns file name of requested Image URL so that It can processed wile exporting document
+	*/
+    getImageRefrence: function () {
+        var getImageId = this.getParameter('sysparm_image_id');
+        var getImg = new GlideRecord('sys_attachment');
+        getImg.addQuery('sys_id', getImageId.toString().split('sys_id=')[1]);
+        getImg.query();
+        if (getImg.next())
+            return getImg.file_name.toString();
+    },
+
+	/*
+	 getConfiguration function checks logged in users access towards configured templates as per selected class it may return template sys_id,NotAuthorized or empty based on below scenarios
+	 1- User is not having accesss to any template - function will return NotAuthorized
+	 2- User is having access to multiple templates, function will return empty so that user will have ability to select template
+	 3- User is having access to only one template, function will return sys_id of template so that partiular template will be rendered in glideoverlay 
+	*/
+    getConfiguration: function (tableName) {
+        var numRecords = this.getAccessv2(tableName);
+		numRecords = numRecords.split('@');
+	    if (parseInt(numRecords[0]) > 0) 
+		{
+            if (parseInt(numRecords[0]) == 0)
+                return "NotAuthorized";
+
+            if (parseInt(numRecords[0]) > 1)
+                return "";
+            else {
+                
+				return numRecords[1];
+            }
+        }
+        return "NotAuthorized";
+
+
+
+    },
+	
+	getAccess: function (tableName)
+	{
+	
+	var cnt = 0 ;	
+	var getAllConfigs = new GlideRecord('x_kpmg6_document_configurations');
+	getAllConfigs.addActiveQuery();
+	getAllConfigs.addQuery('table',tableName);
+	getAllConfigs.query();
+	while(getAllConfigs.next())
+		{
+		var accessResult = false ;	
+		var current = 	getAllConfigs ;
+		var getUserRole = (new x_kpmg6_document.DocumentServerUtil()).userRoles(gs.getUserID());
+		var getUserGroup = (new x_kpmg6_document.DocumentServerUtil()).userGroups(gs.getUserID());
+		var disc = "For " + current.number + "\n" ;
+		if(gs.nil(current.users)&& gs.nil(current.roles)&& gs.nil(current.group))
+			{
+			accessResult = true ;
+		}
+		else
+		{
+			if(!gs.nil(current.users))
+			{
+			if(current.users.toString().indexOf(gs.getUserID())>=0)
+				{
+				accessResult = true ;
+			}
+			
+		 }
+		if(!gs.nil(current.roles) && !gs.nil(getUserRole))
+			{
+			getUserRole = getUserRole.split(',');
+			for(var usrRole in getUserRole)
+				{
+				if(current.roles.toString().indexOf(getUserRole[usrRole])>=0)
+					{
+					accessResult = true ;
+				}
+			}
+		}
+		if(!gs.nil(current.group) && !gs.nil(getUserGroup))
+			{
+			getUserGroup = getUserGroup.split(',');
+			for(var usrGrp in getUserGroup)
+				{
+				if(current.group.toString().indexOf(getUserGroup[usrGrp])>=0)
+					{
+					accessResult = true ;
+				}
+			}
+		}
+		}		
+		if(accessResult)
+			cnt++ ;
+		
+		}
+	return cnt ;
+	},
+	
+	getAccessv2: function (tableName)
+	{
+	
+	var cnt = 0 ;
+	var itemList = [] ;
+	var getAllConfigs = new GlideRecord('x_kpmg6_document_configurations');
+	getAllConfigs.addActiveQuery();
+	getAllConfigs.addQuery('table',tableName);
+	getAllConfigs.query();
+	while(getAllConfigs.next())
+		{
+		var accessResult = false ;	
+		var current = 	getAllConfigs ;
+		var getUserRole = (new x_kpmg6_document.DocumentServerUtil()).userRoles(gs.getUserID());
+		var getUserGroup = (new x_kpmg6_document.DocumentServerUtil()).userGroups(gs.getUserID());
+		var disc = "For " + current.number + "\n" ;
+		if(gs.nil(current.users)&& gs.nil(current.roles)&& gs.nil(current.group))
+			{
+			accessResult = true ;
+			itemList.push(getAllConfigs.getValue('sys_id'))	;
+		}
+		else
+		{
+			if(!gs.nil(current.users))
+			{
+			if(current.users.toString().indexOf(gs.getUserID())>=0)
+				{
+				accessResult = true ;
+				itemList.push(getAllConfigs.getValue('sys_id'))	;	
+			}
+			
+		 }
+		if(!gs.nil(current.roles) && !gs.nil(getUserRole))
+			{
+			getUserRole = getUserRole.split(',');
+			for(var usrRole in getUserRole)
+				{
+				if(current.roles.toString().indexOf(getUserRole[usrRole])>=0)
+					{
+					accessResult = true ;
+					itemList.push(getAllConfigs.getValue('sys_id'))	;	
+				}
+			}
+		}
+		if(!gs.nil(current.group) && !gs.nil(getUserGroup))
+			{
+			getUserGroup = getUserGroup.split(',');
+			for(var usrGrp in getUserGroup)
+				{
+				if(current.group.toString().indexOf(getUserGroup[usrGrp])>=0)
+					{
+					accessResult = true ;
+					itemList.push(getAllConfigs.getValue('sys_id'))	;	
+				}
+			}
+		}
+		}		
+		if(accessResult)
+			cnt++ ;
+		
+		}
+	return cnt + '@' + itemList.toString() ;
+	},
+
+
+    type: 'DocumentUtil'
+});
+]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>thomas.legowo</sys_created_by>
+        <sys_created_on>2019-05-24 04:12:49</sys_created_on>
+        <sys_id>ff9a0d62dbe9b70081438a8b3a96197c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>DocumentUtil</sys_name>
+        <sys_package display_value="Tech Spec Creator" source="x_kpmg6_tech_spec">6d143da1dbedf30081438a8b3a961939</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Tech Spec Creator">6d143da1dbedf30081438a8b3a961939</sys_scope>
+        <sys_update_name>sys_script_include_ff9a0d62dbe9b70081438a8b3a96197c</sys_update_name>
+        <sys_updated_by>thomas.legowo</sys_updated_by>
+        <sys_updated_on>2019-05-24 04:12:49</sys_updated_on>
+    </sys_script_include>
+</record_update>
